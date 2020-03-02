@@ -1,4 +1,5 @@
 #include "PreProcessing.h"
+// correct the background of the pavement images
 
 void PreProcessing::preprocess(Mat &img)
 {
