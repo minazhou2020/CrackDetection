@@ -11,5 +11,9 @@ Dataset -The data set can be downloaded from this https://github.com/minazhou202
 - Installation
 - Usage
 
+|Argument Index | Description                   |
+| ------------- |:-----------------------------:|
+| 1             |  Folder cotaining crack images|
+
 
 
