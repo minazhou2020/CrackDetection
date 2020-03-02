@@ -1,5 +1,7 @@
 #include "DisjointSets.h"
 
+/*helper data structure class for running the MST algorithm*/
+
 DisjointSets::DisjointSets(int n)
 {
 	// Allocate memory 
