@@ -7,11 +7,11 @@
 
 void PreProcessing::preprocess(Mat &img)
 {
-	for (int y = 0; y + 16 <= img.rows; y += 16)
+	for (int y = 0; y + CELL_HEIGHT  <= img.rows; y += CELL_HEIGHT)
 	{
-		for (int x = 0; x + 16 <= img.cols; x += 16)
+		for (int x = 0; x + CELL_WIDTH  <= img.cols; x += CELL_WIDTH )
 		{
-			cv::Mat temp=img(cv::Rect(x, y, 16, 16));
+			cv::Mat temp=img(cv::Rect(x, y, CELL_WIDTH, CELL_HEIGHT ));
 			//find average mean, min, max
 			int mean = cv::mean(temp)[0];
 			double min, max;
@@ -23,8 +23,8 @@ void PreProcessing::preprocess(Mat &img)
 			//compute the new average in the range of (low_threshold, high_threshold)
 			int count = 0;
 			float total = 0;
-			for (int m = 0; m < 16; ++m) {
-				for (int n = 0; n < 16; ++n) {
+			for (int m = 0; m < CELL_HEIGHT ; ++m) {
+				for (int n = 0; n < CELL_WIDTH; ++n) {
 					uchar pixel = temp.at<uchar>(m, n);
 					if (pixel <= threshold_high and pixel >= threshold_low) {
 						total += pixel;
