@@ -1,7 +1,11 @@
 #include "CrackSeedDetection.h"
 
-/* detect potential crack pixel from pavement image. */
+/* Crack Seed Verification We employed the Grid Cell Analysis (GCA) method described in for seed detection, 
+as this algorithm is capable of improving the detection speed by reducing the size of search space. 
+A preprocessed image was divided into grid cells of 8×8 pixels, and the cells were classified as either a non-crack cell or a 
+crack seed by analyzing brightness changes on neighboring cells. */
 
+//coordinates of four neighbor cells in the eight proposed pattern 
 int trans_n_x[4] = { 0, 0, 0, 0 };
 int trans_n_y[4] = { -2, -1, 1, 2 };
 int longi_n_x[4] = { -2, -1, 1, 2 };
@@ -11,6 +15,7 @@ int backward_y[4] = { -2, -1, 1, 2 };
 int forward_x[4] = { -2, -1, 1, 2 };
 int forward_y[4] = { 2, 1, -1, -2 };
 
+// caculate the average intensity of four neighbor cells of each seed
 int CrackSeedDetection::neighbor_mean_total(int x_coors[], int y_coors[], vector<Mat> cells, int i, int j, int height_count) {
 	int mean_neighbor_total = 0;
 	for (int m = 0; m < 4; m++) {
@@ -21,10 +26,12 @@ int CrackSeedDetection::neighbor_mean_total(int x_coors[], int y_coors[], vector
 	return mean_neighbor_total/4;
 }
 
+// compute and assign the contrast to each cell
 float CrackSeedDetection::cell_constrast(int avg, int center, int guide) {
 	return (float)(2 * avg - center - guide) / (float)avg;
 }
 
+// verify if a cell is a seed cell
 int CrackSeedDetection::is_seed(vector<Mat> cells, int center_mean, int i, int j, int width_count, float threshold) {
 	float max_contrast = 0;
 	int g1 = mean(cells[(i - 1)*width_count + j])[0];
@@ -50,8 +57,7 @@ int CrackSeedDetection::is_seed(vector<Mat> cells, int center_mean, int i, int j
 	return max_contrast > threshold;
 }
 
-
-
+// create a vector of seeds to maintain the verified seed cells
 vector<Point2f> CrackSeedDetection::convert_to_seed(int height_count, int width_count, vector<Mat> cells, float threshold)
 {
 	vector<Point2f> seeds = vector<Point2f>();
@@ -69,6 +75,7 @@ vector<Point2f> CrackSeedDetection::convert_to_seed(int height_count, int width_
 	return seeds;
 }
 
+// find the five nearest neighbor of the seed cells and add edge between the seed cells and their five neighbors
 void CrackSeedDetection::find_nearest_neighbor(vector<Point2f>& seeds, Graph& g)
 {
 	//Insert all 2D points to this vector
