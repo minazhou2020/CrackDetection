@@ -29,8 +29,7 @@ int Graph::kruskalMST(vector<Point2f> seeds, Mat image)
 		int set_v = ds.find(v);
 
 		// Check if the selected edge is creating 
-		// a cycle or not (Cycle is created if u 
-		// and v belong to same set) 
+		// a cycle or not 
 		if (set_u != set_v)
 		{
 			// draw lines between connected nodes
@@ -41,7 +40,6 @@ int Graph::kruskalMST(vector<Point2f> seeds, Mat image)
 			ds.merge(set_u, set_v);
 		}
 	}
-	imwrite("C:\\demo\\P\\CP\\sample_after.jpg", image);
 	return mst_wt;
 }
 
