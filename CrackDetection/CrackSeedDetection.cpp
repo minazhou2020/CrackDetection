@@ -18,12 +18,12 @@ int forward_y[4] = { 2, 1, -1, -2 };
 // caculate the average intensity of four neighbor cells of each seed
 int CrackSeedDetection::neighbor_mean_total(int x_coors[], int y_coors[], vector<Mat> cells, int i, int j, int height_count) {
 	int mean_neighbor_total = 0;
-	for (int m = 0; m < 4; m++) {
+	for (int m = 0; m < NEIGHBOR_NUMBER; m++) {
 		Mat n = cells[(i + x_coors[m])*height_count + j+ y_coors[m]];
 		Scalar mean = cv::mean(n);
 		mean_neighbor_total += mean[0];
 	}
-	return mean_neighbor_total/4;
+	return mean_neighbor_total/NEIGHBOR_NUMBER;
 }
 
 // compute and assign the contrast to each cell
@@ -61,8 +61,8 @@ int CrackSeedDetection::is_seed(vector<Mat> cells, int center_mean, int i, int j
 vector<Point2f> CrackSeedDetection::convert_to_seed(int height_count, int width_count, vector<Mat> cells, float threshold)
 {
 	vector<Point2f> seeds = vector<Point2f>();
-	for (int i = 2; i < height_count - 2; i++) {
-		for (int j = 2; j < width_count - 2; j++) {
+	for (int i = NEIGHBOR_NUMBER /2; i < height_count - NEIGHBOR_NUMBER/2; i++) {
+		for (int j = NEIGHBOR_NUMBER/2; j < width_count - NEIGHBOR_NUMBER /2; j++) {
 			int index = i * width_count + j;
 			Mat center = cells[index];
 			int center_mean = cv::mean(center)[0];
@@ -94,7 +94,6 @@ void CrackSeedDetection::find_nearest_neighbor(vector<Point2f>& seeds, Graph& g)
 	vector<int> indices;
 	vector<float> dists;
 	//find the nearest neighbor
-	double threshold = 50 * 50;
 	for (int i = 0; i < seeds.size(); i++)
 	{
 		cv::Mat query = (cv::Mat_<float>(1, 2) << seeds[i].x, seeds[i].y);
@@ -109,7 +108,7 @@ void CrackSeedDetection::find_nearest_neighbor(vector<Point2f>& seeds, Graph& g)
 			{
 				continue;
 			}
-			if (dists[i]<=threshold)
+			if (dists[i]<=DISTANCE_THRESHOLD)
 				g.addEdge(search_index, find_index, dists[j]);
 		}
 	}
