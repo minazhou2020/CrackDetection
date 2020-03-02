@@ -23,7 +23,7 @@ In seed clustering, individual seeds were connected into seed clusters using a M
 OpenCV
 
 ## Dataset 
--The data set can be downloaded from this ![samples](https://github.com/minazhou2020/CrackDetection/tree/master/linear_cracks)
+- The data set can be downloaded from this [samples](https://github.com/minazhou2020/CrackDetection/tree/master/linear_cracks)
 
 ## Installation
 
@@ -33,8 +33,8 @@ OpenCV
 | ------------- |:-----------------------------:|
 | 1             |  Folder cotaining crack images|
 ## TO DO
--Lane Marking Detection
--Undesirable particles removal
+- Lane Marking Detection
+- Undesirable particles removal
 ## Author
 Yuxiao Zhou
 
