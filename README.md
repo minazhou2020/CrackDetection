@@ -8,14 +8,17 @@ This repository contains the code for crack detection in asphalt surfaces. It is
 
 - Image Background Correction
 Pavement images are taken under different weather conditions and daytime, and may contain shadows and large variations of texture. As a result non-uniform lighting is present in the images. It is necessary to standardize image background in order to enhance the accuracy of crack detection.
+
 ![image background correction](https://github.com/minazhou2020/CrackDetection/blob/master/description/backgroundCorrection.PNG?raw=true)
 
 - Crack Seed Verification
 We employed the Grid Cell Analysis (GCA) method described in for seed detection, as this algorithm is capable of improving the detection speed by reducing the size of search space. A preprocessed image was divided into grid cells of 8×8 pixels, and the cells were classified as either a non-crack cell or a crack seed by analyzing brightness changes on neighboring cells. A group of patterns were  proposed adopted for crack seed verification. 
+
 ![crack seed verification patterns](https://github.com/minazhou2020/CrackDetection/blob/master/description/Patterns.PNG?raw=true)
 
 - Seed Clustering
 In seed clustering, individual seeds were connected into seed clusters using a Minimum Spanning Tree (MST) based method. A MST is a minimum weight, cycle free subset of a graph's edges such that all nodes are connected. 
+
 ![seed clustering](https://github.com/minazhou2020/CrackDetection/blob/master/description/SeedDetection.PNG?raw=true)
 
 ## Prerequisites
