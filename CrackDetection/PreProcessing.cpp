@@ -1,5 +1,9 @@
 #include "PreProcessing.h"
-// correct the background of the pavement images
+
+/*This class is to 
+1. standardize image background in order to enhance the accuracy of crack detection.
+2. split image into grid of cells (8*8 pixel)
+*/
 
 void PreProcessing::preprocess(Mat &img)
 {
@@ -54,6 +58,3 @@ vector<Mat> PreProcessing::split_image(const Mat img)
 	}
 	return cell_vector;
 }
-
-
-
