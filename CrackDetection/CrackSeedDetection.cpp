@@ -27,7 +27,7 @@ int CrackSeedDetection::neighbor_mean_total(const int x_coors[], const int y_coo
 }
 
 // compute and assign the contrast to each cell
-float CrackSeedDetection::cell_constrast(int avg, int center, int guide) {
+float CrackSeedDetection::cell_constrast(const int avg, const int center, const int guide) {
 	return (float)(2 * avg - center - guide) / (float)avg;
 }
 
