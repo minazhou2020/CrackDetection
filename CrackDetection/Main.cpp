@@ -16,7 +16,6 @@ int main(int argc, char** argv)
 {
 	string fold_path(argv[1]);
 	vector<Mat> images = read_folder(fold_path);
-	cout << images.size()<<endl;
 
 #pragma omp parallel for num_threads(16)
 	for (int i = 0; i<images.size();i++) {
