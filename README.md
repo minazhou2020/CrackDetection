@@ -7,7 +7,7 @@ The proposed crack detection algorithm includes following steps:
 ![crack detection methodology](https://github.com/minazhou2020/CrackDetection/blob/master/Capture.PNG?raw=true)
 ## Prerequisites
 OpenCV
-Dataset -The data set can be downloaded from this https://github.com/minazhou2020/CrackDetection/tree/master/linear_cracks
+Dataset -The data set can be downloaded from this ![image samples](https://github.com/minazhou2020/CrackDetection/tree/master/linear_cracks)
 ## Installation
 ## Usage
 
