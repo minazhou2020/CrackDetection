@@ -1,5 +1,7 @@
 #include "Graph.h"
 
+/*Construct a graph from detected seeds */
+
 Graph::Graph(int V, int E)
 {
 	this->V = V;
