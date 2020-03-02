@@ -14,6 +14,7 @@ using namespace cv;
 using namespace std;
 
 #define NEIGHBOR_NUMBER 4
+#define DISTANCE_THRESHOLD 2500
 
 class CrackSeedDetection
 {
