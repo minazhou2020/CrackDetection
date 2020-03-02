@@ -1,5 +1,7 @@
 #include "CrackSeedDetection.h"
 
+/* detect potential crack pixel from pavement image. */
+
 int trans_n_x[4] = { 0, 0, 0, 0 };
 int trans_n_y[4] = { -2, -1, 1, 2 };
 int longi_n_x[4] = { -2, -1, 1, 2 };
