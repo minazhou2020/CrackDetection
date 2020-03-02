@@ -21,8 +21,12 @@ In seed clustering, individual seeds were connected into seed clusters using a M
 ## Prerequisites
 
 OpenCV
-Dataset -The data set can be downloaded from this ![image samples](https://github.com/minazhou2020/CrackDetection/tree/master/linear_cracks)
+
+## Dataset 
+-The data set can be downloaded from this ![samples](https://github.com/minazhou2020/CrackDetection/tree/master/linear_cracks)
+
 ## Installation
+
 ## Usage
 
 |Argument Index | Description                   |
