@@ -36,7 +36,8 @@ OpenCV
 | ------------- |:-----------------------------:|
 | 1             |  Folder cotaining crack images|
 ## TO DO
-- Lane Marking Detection
+- Instruction for installation
+- Lane marking detection
 - Undesirable particles removal
 ## Author
 Yuxiao Zhou
