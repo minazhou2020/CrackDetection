@@ -12,22 +12,6 @@ vector<Mat> read_folder(string path) {
 	return images;
 }
 
-/*int main(int argc, char** argv) {
-	Mat image, src_gray,detected_edges, dst;
-	int ratio = 3;
-	int kernel_size = 3;
-	const char* window_name = "Edge Map";
-	image=imread("C://demo//P//CP//001.jpg");
-	cvtColor(image, src_gray, cv::COLOR_BGR2GRAY);
-	blur(src_gray, detected_edges, Size(3, 3));
-	int lowThreshold=50;
-	Canny(detected_edges, detected_edges, lowThreshold, lowThreshold*ratio, 3);
-	dst = Scalar::all(0);
-	image.copyTo(dst, detected_edges);
-	imshow(window_name, dst);
-	waitKey(0);
-}*/
-
 int main(int argc, char** argv)
 {
 	string fold_path(argv[1]);
