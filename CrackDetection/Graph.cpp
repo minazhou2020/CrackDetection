@@ -1,50 +1,47 @@
 #include "Graph.h"
 
-/*Construct a graph from detected seeds */
-
-Graph::Graph(int V, int E)
+graph::graph(const int v, const int e)
 {
-	this->V = V;
-	this->E = E;
+	this->v_ = v;
+	this->e_ = e;
 }
 
-void Graph::addEdge(int u, int v, float w)
+void graph::add_edge(int u, int v, const float w)
 {
-	edges.push_back({ w, {u, v} });
+	edges_.push_back({ w, {u, v} });
 }
 
-int Graph::kruskalMST(vector<Point2f> seeds, Mat image)
+int graph::kruskal_MST(vector<Point_<float>> seeds, Mat image)
 {
-	int mst_wt = 0; // Initialize result 
+	auto mst_wt = 0; // Initialize result 
 	// Sort edges in increasing order on basis of cost 
-	sort(edges.begin(), edges.end());
+	sort(edges_.begin(), edges_.end());
 	// Create disjoint sets 
-	DisjointSets ds(V);
-	// Iterate through all sorted edges 
-	vector< pair<float, iPair> >::iterator it;
-	for (it = edges.begin(); it != edges.end(); it++)
+	const disjoint_sets ds(v_);
+	for (auto& edge : edges_)
 	{
-		int u = it->second.first;
-		int v = it->second.second;
+		const auto u = edge.second.first;
+		const auto v = edge.second.second;
 
-		int set_u = ds.find(u);
-		int set_v = ds.find(v);
+		const auto set_u = ds.find(u);
+		const auto set_v = ds.find(v);
 
 		// Check if the selected edge is creating 
-		// a cycle or not 
+		// a cycle or not (Cycle is created if u 
+		// and v belong to same set) 
 		if (set_u != set_v)
 		{
 			// draw lines between connected nodes
 			line(image, seeds[u], seeds[v], Scalar(255, 0, 0), 2, 8);
 			// Update MST weight 
-			mst_wt += it->first;
+			mst_wt += edge.first;
 			// Merge two sets 
 			ds.merge(set_u, set_v);
 		}
 	}
+	imwrite(R"(C:\demo\P\CP\sample_after.jpg)", image);
 	return mst_wt;
 }
 
-Graph::~Graph()
-{
-}
+graph::~graph()
+= default;

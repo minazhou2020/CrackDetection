@@ -1,12 +1,14 @@
 #pragma once
-class DisjointSets
+class disjoint_sets
 {
-	int *parent, *rnk;
-	int n;
+	int *parent_;
+	int *rnk_;
+	int n_;
 public:
-	DisjointSets(int n);
-	int find(int u);
-	void merge(int x, int y);
-	~DisjointSets();
+	explicit disjoint_sets(int n);
+	int find(int u) const;
+	void merge(int x, int y) const;
+	~disjoint_sets();
 };
+
 

@@ -1,3 +1,4 @@
+#pragma once
 #include <utility> 
 #include <vector>
 #include <algorithm> 
@@ -9,15 +10,15 @@
 using namespace std;
 using namespace cv;
 
-class Graph
+class graph
 {
-	typedef pair<int, int> iPair;
-	int V, E;
-	vector<pair<float, iPair>> edges;
+	typedef pair<int, int> i_pair;
+	int v_, e_;
+	vector<pair<float, i_pair>> edges_;
 public:
-	Graph(int V, int E);
-	void addEdge(int u, int v, float w);
-	int kruskalMST(vector<Point2f> seeds, Mat image);
-	~Graph();
+	graph(int v, int e);
+	void add_edge(int u, int v, float w);
+	int kruskal_MST(vector<Point2f> seeds, Mat image);
+	~graph();
 };
 

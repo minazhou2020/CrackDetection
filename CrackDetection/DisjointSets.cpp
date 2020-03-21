@@ -1,44 +1,45 @@
 #include "DisjointSets.h"
 
-/*helper data structure class for running the MST algorithm*/
-
-DisjointSets::DisjointSets(int n)
+disjoint_sets::disjoint_sets(const int n)
 {
 	// Allocate memory 
-	this->n = n;
-	parent = new int[n + 1];
-	rnk = new int[n + 1];
-	// Initially, all vertices are in different sets and have rank 0. 
-	for (int i = 0; i <= n; i++)
+	this->n_ = n;
+	parent_ = new int[n + 1];
+	rnk_ = new int[n + 1];
+	// Initially, all vertices are in 
+	// different sets and have rank 0. 
+	for (auto i = 0; i <= n; i++)
 	{
-		rnk[i] = 0;
+		rnk_[i] = 0;
 		//every element is parent of itself 
-		parent[i] = i;
+		parent_[i] = i;
 	}
 }
 
 // Find the parent of a node 'u' 
-int DisjointSets::find(int u)
+	// Path Compression 
+int disjoint_sets::find(const int u) const
 {
-	/* Find the parent of the nodes in the path
+	/* Make the parent of the nodes in the path
 	   from u--> parent[u] point to parent[u] */
-	if (u != parent[u])
-		parent[u] = find(parent[u]);
-	return parent[u];
+	if (u != parent_[u])
+		parent_[u] = find(parent_[u]);
+	return parent_[u];
 }
 
-void DisjointSets::merge(int x, int y)
+void disjoint_sets::merge(int x, int y) const
 {
 	x = find(x), y = find(y);
-	if (rnk[x] > rnk[y])
-		parent[y] = x;
+	/* Make tree with smaller height
+	   a subtree of the other tree  */
+	if (rnk_[x] > rnk_[y])
+		parent_[y] = x;
 	else // If rnk[x] <= rnk[y] 
-		parent[x] = y;
+		parent_[x] = y;
 
-	if (rnk[x] == rnk[y])
-		rnk[y]++;
+	if (rnk_[x] == rnk_[y])
+		rnk_[y]++;
 }
 
-DisjointSets::~DisjointSets()
-{
-}
+disjoint_sets::~disjoint_sets()
+= default;

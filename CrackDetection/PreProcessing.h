@@ -1,8 +1,5 @@
-#include "opencv2/imgproc/imgproc.hpp"
+#pragma once
 #include "opencv2/highgui/highgui.hpp"
-#include <stdlib.h>
-#include <stdio.h>
-#include <iostream>
 
 using namespace cv;
 using namespace std;
@@ -12,9 +9,9 @@ using namespace std;
 #define CELL_HEIGHT 8
 #define CELL_WIDTH 8
 
-class PreProcessing
+class pre_processing
 {
 public:
 	static void preprocess(Mat &img);
-	static vector<Mat> split_image(const Mat img);
+	static vector<Mat> split_image(const Mat& img);
 };

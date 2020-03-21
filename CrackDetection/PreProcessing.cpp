@@ -1,60 +1,56 @@
 #include "PreProcessing.h"
 
-/*This class is to 
-1. standardize image background in order to enhance the accuracy of crack detection.
-2. split image into grid of cells (8*8 pixel)
-*/
-
-void PreProcessing::preprocess(Mat &img)
+void pre_processing::preprocess(Mat &img)
 {
-	for (int y = 0; y + CELL_HEIGHT  <= img.rows; y += CELL_HEIGHT)
+	for (auto y = 0; y + 16 <= img.rows; y += 16)
 	{
-		for (int x = 0; x + CELL_WIDTH  <= img.cols; x += CELL_WIDTH )
+		for (auto x = 0; x + 16 <= img.cols; x += 16)
 		{
-			cv::Mat temp=img(cv::Rect(x, y, CELL_WIDTH, CELL_HEIGHT ));
+			auto temp=img(cv::Rect(x, y, 16, 16));
 			//find average mean, min, max
-			int mean = cv::mean(temp)[0];
+			const int mean = cv::mean(temp)[0];
 			double min, max;
 			cv::minMaxLoc(temp, &min, &max);
 			//find high_theshold value which regarded as exposed pixel
-			double threshold_high = mean + (max - mean)*THRESHOLD_RATE;
+			const auto threshold_high = mean + (max - mean)*THRESHOLD_RATE;
 			//find low_theshold value which regarded as crack pixel
-			double threshold_low = mean - (mean - min)*THRESHOLD_RATE;
+			const auto threshold_low = mean - (mean - min)*THRESHOLD_RATE;
 			//compute the new average in the range of (low_threshold, high_threshold)
-			int count = 0;
+			auto count = 0;
 			float total = 0;
-			for (int m = 0; m < CELL_HEIGHT ; ++m) {
-				for (int n = 0; n < CELL_WIDTH; ++n) {
-					uchar pixel = temp.at<uchar>(m, n);
-					if (pixel <= threshold_high && pixel >= threshold_low) {
+			for (auto m = 0; m < 16; ++m) {
+				for (auto n = 0; n < 16; ++n) {
+					const auto pixel = temp.at<uchar>(m, n);
+					if (pixel <= threshold_high and pixel >= threshold_low) {
 						total += pixel;
 						++count;
 					}
 				}
 			}
 			//get the new avg
-			float avg = total / count;
+			const float avg = total / count;
 			//find the factor to convert image average value to a constant
-			float factor = INTENSITY / avg;
+			const float factor = INTENSITY / avg;
 			//change the image intensity
 			temp = temp * factor;
 		}
 	}
 }
 
-vector<Mat> PreProcessing::split_image(const Mat img)
+vector<Mat> pre_processing::split_image(const Mat& img)
 {
-	int height_count = img.rows / CELL_HEIGHT;
-	int width_count = img.cols / CELL_WIDTH;
 	vector<cv::Mat> cell_vector;
 	//create cell_vector
 
-	for (int y = 0; y<= (int)(img.rows-CELL_HEIGHT); y += CELL_HEIGHT)
+	for (auto y = 0; y<= static_cast<int>(img.rows - CELL_HEIGHT); y += CELL_HEIGHT)
 	{
-		for (int x = 0; x<= (int)(img.cols-CELL_WIDTH); x += CELL_WIDTH)
+		for (auto x = 0; x<= static_cast<int>(img.cols - CELL_WIDTH); x += CELL_WIDTH)
 		{
 			cell_vector.push_back(img(cv::Rect(x, y, CELL_WIDTH, CELL_HEIGHT)));
 		}
 	}
 	return cell_vector;
 }
+
+
+
