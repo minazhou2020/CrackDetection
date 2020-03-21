@@ -1,7 +1,6 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <opencv2/core/utility.hpp>
-#include "Cell.h"
 #include "Graph.h"
 #include "PreProcessing.h"
 #include <stdlib.h>
@@ -24,6 +23,6 @@ public:
 private:
 	static int neighbor_mean_total(const int x_coors[], const int y_coors[], const vector<Mat> cells, const int i, const int j, const int height_count);
 	static float cell_constrast(const int avg, const int center, const int guide);
-	static int is_seed(const vector<Mat> cells, const int center_mean, const int i, const int j, const int height_count);
+	static int is_seed(const vector<Mat> cells, const int center_mean, const int i, const int j, const int height_count, const float threshold);
 
 };

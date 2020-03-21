@@ -26,7 +26,7 @@ void PreProcessing::preprocess(Mat &img)
 			for (int m = 0; m < CELL_HEIGHT ; ++m) {
 				for (int n = 0; n < CELL_WIDTH; ++n) {
 					uchar pixel = temp.at<uchar>(m, n);
-					if (pixel <= threshold_high and pixel >= threshold_low) {
+					if (pixel <= threshold_high && pixel >= threshold_low) {
 						total += pixel;
 						++count;
 					}

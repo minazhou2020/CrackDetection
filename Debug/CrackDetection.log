@@ -1,0 +1,10 @@
+﻿  CrackSeedDetection.cpp
+c:\users\m.zhou\documents\github\crackdetection\crackdetection\crackseeddetection.h(1): fatal error C1083: Cannot open include file: 'opencv2/imgproc/imgproc.hpp': No such file or directory
+  DisjointSets.cpp
+  Graph.cpp
+c:\users\m.zhou\documents\github\crackdetection\crackdetection\graph.h(6): fatal error C1083: Cannot open include file: 'opencv2/imgproc/imgproc.hpp': No such file or directory
+  Main.cpp
+c:\users\m.zhou\documents\github\crackdetection\crackdetection\crackseeddetection.h(1): fatal error C1083: Cannot open include file: 'opencv2/imgproc/imgproc.hpp': No such file or directory
+  PreProcessing.cpp
+c:\users\m.zhou\documents\github\crackdetection\crackdetection\preprocessing.h(1): fatal error C1083: Cannot open include file: 'opencv2/imgproc/imgproc.hpp': No such file or directory
+  Generating Code...

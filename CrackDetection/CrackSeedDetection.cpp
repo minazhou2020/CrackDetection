@@ -32,7 +32,7 @@ float CrackSeedDetection::cell_constrast(const int avg, const int center, const 
 }
 
 // create a vector of seeds to maintain the verified seed cells
-vector<Point2f> CrackSeedDetection::convert_to_seed(const int height_count, const int width_count, vector<Mat>& cells)
+vector<Point2f> CrackSeedDetection::convert_to_seed(const int height_count, const int width_count, vector<Mat>& cells, const float threshold)
 {
 	vector<Point2f> seeds = vector<Point2f>();
 	for (int i = NEIGHBOR_NUMBER /2; i < height_count - NEIGHBOR_NUMBER/2; i++) {
@@ -72,7 +72,7 @@ void CrackSeedDetection::find_nearest_neighbor(vector<Point2f>& seeds, Graph& g)
 	{
 		cv::Mat query = (cv::Mat_<float>(1, 2) << seeds[i].x, seeds[i].y);
 		kdtree.knnSearch(query, indices, dists, NEIGHBOR_NUMBER <= seeds.size() ? NEIGHBOR_NUMBER : seeds.size());
-		if (dists.size() <= 1 || dists[1] > threshold)
+		if (dists.size() <= 1 || dists[1] > THRESHOLD_RATE)
 			continue;
 		for (int j = 1; j < indices.size(); j++)
 		{
