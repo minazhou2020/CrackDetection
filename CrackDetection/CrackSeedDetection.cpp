@@ -72,7 +72,7 @@ vector<Point2f> crack_seed_detection::convert_to_seed(int height_count, int widt
 void crack_seed_detection::find_nearest_neighbor(vector<Point2f>& seeds, graph& g)
 {
 	//Insert all 2D points to this vector
-	const flann::KDTreeIndexParams indexParams;
+	const flann::KDTreeIndexParams index_params;
 	vector<bool> bool_vect(seeds.size(), false);
 	cv::Mat_<float> features(0, 2);
 	for (auto&& point : seeds)
@@ -82,7 +82,7 @@ void crack_seed_detection::find_nearest_neighbor(vector<Point2f>& seeds, graph& 
 		features.push_back(row);
 	}
 
-	flann::Index kdtree(features, indexParams);
+	flann::Index kdtree(features, index_params);
 	//Insert the 2D point we need to find neighbors to the query
 	vector<int> indices;
 	vector<float> dists;

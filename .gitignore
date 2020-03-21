@@ -7,6 +7,11 @@
 *.userosscache
 *.sln.docstates
 *.filters
+CrackDetection/*.suo
+CrackDetection/*.user
+CrackDetection/*.userosscache
+CrackDetection/*.sln.docstates
+CrackDetection/*.filters
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
