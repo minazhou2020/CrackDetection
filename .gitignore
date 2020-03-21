@@ -16,7 +16,10 @@ CrackDetection/*.filters
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+
 # Build results
+x64
+.vs 
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
