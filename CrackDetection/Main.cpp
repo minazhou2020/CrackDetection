@@ -36,7 +36,7 @@ int main(char** argv)
 		/*construct a graph
 		vertices are acquired from the seeds, which are the potential candidates of crack pixel
 		edges are only build between seeds and their five nearest neighbors*/
-		graph a_graph = graph(seeds.size(), seeds.size() * NEIGHBOR_NUMBER);
+		graph a_graph = graph(seeds.size(), seeds.size() * NEAREST_NEIGHBOR);
 		//add edge to the graph
 		crack_seed_detection::find_nearest_neighbor(seeds, a_graph);
 		//create a black image with original height and width

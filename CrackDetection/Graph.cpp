@@ -39,7 +39,6 @@ int graph::kruskal_MST(vector<Point_<float>> seeds, Mat image)
 			ds.merge(set_u, set_v);
 		}
 	}
-	imwrite(R"(C:\demo\P\CP\sample_after.jpg)", image);
 	return mst_wt;
 }
 

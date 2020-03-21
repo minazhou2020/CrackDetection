@@ -4,13 +4,14 @@
 using namespace cv;
 using namespace std;
 
-#define THRESHOLD_RATE 0.6
-#define INTENSITY 150
 #define CELL_HEIGHT 8
 #define CELL_WIDTH 8
 
 class pre_processing
 {
+	static const float threshold_rate = 0.6;
+	static const int intensity = 150;
+
 public:
 	static void preprocess(Mat &img);
 	static vector<Mat> split_image(const Mat& img);

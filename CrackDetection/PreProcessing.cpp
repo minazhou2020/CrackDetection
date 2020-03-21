@@ -12,9 +12,9 @@ void pre_processing::preprocess(Mat &img)
 			double min, max;
 			cv::minMaxLoc(temp, &min, &max);
 			//find high_theshold value which regarded as exposed pixel
-			const auto threshold_high = mean + (max - mean)*THRESHOLD_RATE;
+			const auto threshold_high = mean + (max - mean)*threshold_rate;
 			//find low_theshold value which regarded as crack pixel
-			const auto threshold_low = mean - (mean - min)*THRESHOLD_RATE;
+			const auto threshold_low = mean - (mean - min)*threshold_rate;
 			//compute the new average in the range of (low_threshold, high_threshold)
 			auto count = 0;
 			float total = 0;
@@ -30,7 +30,7 @@ void pre_processing::preprocess(Mat &img)
 			//get the new avg
 			const float avg = total / count;
 			//find the factor to convert image average value to a constant
-			const float factor = INTENSITY / avg;
+			const float factor = intensity / avg;
 			//change the image intensity
 			temp = temp * factor;
 		}
