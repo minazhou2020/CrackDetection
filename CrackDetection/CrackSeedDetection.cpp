@@ -15,10 +15,10 @@ bool crack_seed_detection::is_seed(const vector<Mat>& cells, const int i, const 
 			mean_neighbor_total += mean[0];
 		}
 
-		for (auto n = 0; n < guide_count; n++)
+		for (auto g = 0; g < guide_count_; g++)
 		{
-			float g = mean(cells[(i + guides_[guide_count++].first)*height_count + guides_[guide_count++].second + 1])[0];
-			max_contrast = max(cell_contrast(mean_neighbor_total / 4, center_mean, g), max_contrast);
+			const int guide = mean(cells[(i + guides_[guide_count].first)*height_count + guides_[guide_count++].second])[0];
+			max_contrast = max(cell_contrast(mean_neighbor_total /neighbor_count_, center_mean, guide), max_contrast);
 		}
 
 	}
@@ -29,7 +29,8 @@ float crack_seed_detection::cell_contrast(const int avg, const int center, const
 	return static_cast<float>(2 * avg - center - guide) / static_cast<float>(avg);
 }
 
-vector<Point2f> crack_seed_detection::convert_to_seed(const int height_count, const int width_count, vector<Mat> cells, const float threshold) const
+vector<Point2f> crack_seed_detection::convert_to_seed(const int height_count, const int width_count, const vector<Mat>&
+                                                      cells, const float threshold) const
 {
 	auto seeds = vector<Point2f>();
 	for (auto i = 2; i < height_count - 2; i++) {

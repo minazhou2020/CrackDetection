@@ -17,7 +17,7 @@ using namespace std;
 class crack_seed_detection
 {
 public:
-	vector<Point2f> convert_to_seed(int height_count, int width_count, vector<Mat> cells, float threshold) const;
+	vector<Point2f> convert_to_seed(int height_count, int width_count, const vector<Mat>& cells, float threshold) const;
 	static void construct_graph(vector<Point2f>& seeds, graph& g);
 private:
 	const int patter_size_ = 4;

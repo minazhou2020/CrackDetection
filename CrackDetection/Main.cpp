@@ -12,17 +12,17 @@ vector<Mat> read_folder(const string& path) {
 	return images;
 }
 
-int main(char** argv)
+int main(int argc, char** argv)
 {
 	const string path(argv[1]);
 	auto images = read_folder(path);
-	cout << images.size()<<endl;
 
-#pragma omp parallel for num_threads(16)
+//#pragma omp parallel for num_threads(16)
 	for (auto i = 0; i < images.size();i++) {
 		Mat src_gray;
 		cvtColor(images[i], src_gray, cv::COLOR_BGR2GRAY);
 		pre_processing p;
+		p.preprocess(src_gray);
 		const auto image_vector = p.split_image(src_gray);
 		const auto height = src_gray.rows;
 		const auto width = src_gray.cols;
