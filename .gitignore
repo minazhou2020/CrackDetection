@@ -18,8 +18,8 @@ CrackDetection/*.filters
 
 
 # Build results
-x64
-.vs 
+.vs\
+x64\
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
