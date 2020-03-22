@@ -14,8 +14,8 @@ vector<Mat> read_folder(const string& path) {
 
 int main(char** argv)
 {
-	const string fold_path(argv[1]);
-	auto images = read_folder(fold_path);
+	const string path(argv[1]);
+	auto images = read_folder(path);
 	cout << images.size()<<endl;
 
 #pragma omp parallel for num_threads(16)
@@ -30,17 +30,14 @@ int main(char** argv)
 		crack_seed_detection csd;
 		auto seeds = csd.convert_to_seed(height / CELL_HEIGHT, width / CELL_WIDTH,
 		                                                 image_vector, 0.15);
-		/*construct a graph
-		vertices are acquired from the seeds, which are the potential candidates of crack pixel
-		edges are only build between seeds and their five nearest neighbors*/
 		graph a_graph = graph(seeds.size(), seeds.size() * NEAREST_NEIGHBOR);
 		//add edge to the graph
-		crack_seed_detection::find_nearest_neighbor(seeds, a_graph);
+		crack_seed_detection::construct_graph(seeds, a_graph);
 		//create a black image with original height and width
 		Mat result(height, width, CV_8UC3, Scalar(0, 0, 0));
 		//find the MST using kruskal algorithm and draw the path on the black image
 		a_graph.kruskal_MST(seeds, result);
 		//save the image to the folder
-		imwrite(fold_path+"//"+ to_string(i)+".png", result);
+		imwrite(path+"//"+ to_string(i)+".png", result);
 	}
 }

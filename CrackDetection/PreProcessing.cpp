@@ -16,21 +16,12 @@ void pre_processing::preprocess(Mat &img) const
 			//find low_theshold value which regarded as crack pixel
 			const auto threshold_low = mean - (mean - min)*threshold_rate_;
 			//compute the new average in the range of (low_threshold, high_threshold)
-			auto count = 0;
-			float total = 0;
-			for (auto m = 0; m < 16; ++m) {
-				for (auto n = 0; n < 16; ++n) {
-					const auto pixel = temp.at<uchar>(m, n);
-					if (pixel <= threshold_high and pixel >= threshold_low) {
-						total += pixel;
-						++count;
-					}
-				}
-			}
-			//get the new avg
-			const float avg = total / count;
+			cv::Mat mask;
+			threshold(temp, mask, threshold_high, 255, 4);
+			threshold(mask, mask, threshold_low, 255, 3);
+			const int new_mean= cv::mean(temp, mask)[0];
 			//find the factor to convert image average value to a constant
-			const float factor = intensity_ / avg;
+			const float factor = intensity_ / new_mean;
 			//change the image intensity
 			temp = temp * factor;
 		}

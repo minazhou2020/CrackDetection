@@ -1,7 +1,7 @@
 #include "CrackSeedDetection.h"
 
-int crack_seed_detection::is_seed(const vector<Mat>& cells, const int i, const int j, const int center_mean, 
-	const int height_count, const float threshold) const
+bool crack_seed_detection::is_seed(const vector<Mat>& cells, const int i, const int j, const int center_mean,
+                                   const int height_count, const float threshold) const
 {
 	float max_contrast = 0;
 	auto guide_count = 0;
@@ -46,7 +46,11 @@ vector<Point2f> crack_seed_detection::convert_to_seed(const int height_count, co
 	return seeds;
 }
 
-void crack_seed_detection::find_nearest_neighbor(vector<Point2f>& seeds, graph& g)
+/*construct a graph vertices are acquired from the seeds, which are the potential
+ *candidates of crack pixel edges are only build between seeds and their five nearest
+ *neighbors*/
+
+void crack_seed_detection::construct_graph(vector<Point2f>& seeds, graph& g)
 {
 	//Insert all 2D points to this vector
 	const flann::KDTreeIndexParams index_params;
@@ -59,28 +63,26 @@ void crack_seed_detection::find_nearest_neighbor(vector<Point2f>& seeds, graph& 
 		features.push_back(row);
 	}
 
-	flann::Index kdtree(features, index_params);
+	flann::Index kd_tree(features, index_params);
 	//Insert the 2D point we need to find neighbors to the query
 	vector<int> indices;
-	vector<float> dists;
+	vector<float> distances;
 	//find the nearest neighbor
 	const double threshold = 50 * 50;
 	for (auto i = 0; i < seeds.size(); i++)
 	{
 		cv::Mat query = (cv::Mat_<float>(1, 2) << seeds[i].x, seeds[i].y);
-		kdtree.knnSearch(query, indices, dists, NEAREST_NEIGHBOR <= seeds.size() ? NEAREST_NEIGHBOR : seeds.size());
-		if (dists.size() <= 1 || dists[1] > threshold)
+		kd_tree.knnSearch(query, indices, distances, NEAREST_NEIGHBOR <= seeds.size() ? NEAREST_NEIGHBOR : seeds.size());
+		if (distances.size() <= 1 || distances[1] > threshold)
 			continue;
 		for (auto j = 1; j < indices.size(); j++)
 		{
 			const auto search_index = i;
 			const auto find_index = indices[j];
 			if (search_index == find_index)
-			{
 				continue;
-			}
-			if (dists[i]<=threshold)
-				g.add_edge(search_index, find_index, dists[j]);
+			if (distances[i]<=threshold)
+				g.add_edge(search_index, find_index, distances[j]);
 		}
 	}
 

@@ -18,7 +18,7 @@ class crack_seed_detection
 {
 public:
 	vector<Point2f> convert_to_seed(int height_count, int width_count, vector<Mat> cells, float threshold) const;
-	static void find_nearest_neighbor(vector<Point2f>& seeds, graph& g);
+	static void construct_graph(vector<Point2f>& seeds, graph& g);
 private:
 	const int patter_size_ = 4;
 	const int neighbor_count_ = 4;
@@ -30,8 +30,9 @@ private:
 	const vector<pair<int, int>> guides_ = { {-1,0}, {1,0}, {0,1}, {0,-1},
 												 {-1,1}, {1,-1}, {-1,-1}, {1,1} };
 	static float cell_contrast(int avg, int center, int guide);
-	int is_seed(const vector<Mat>& cells, const int i, const int j, const int center_mean, const int height_count, const float
-	                   threshold) const;
+	bool is_seed(const vector<Mat>& cells, const int i, const int j, const int center_mean, const int height_count,
+	             const float
+	             threshold) const;
 
 };
 
