@@ -1,6 +1,6 @@
 # CrackDetection
 ## About this project
-This repository contains the code for crack detection in asphalt surfaces. It is a c++, opencv implementation of the paper by Yuxiao Zhou:
+This repository contains the code for crack detection in asphalt surfaces. It is a c++, opencv implementation of the paper by Yuxiao (Mina) Zhou:
 [Seed-Based Approach for Automated Crack Detection from Pavement Images](https://www.researchgate.net/publication/305792615_Seed-Based_Approach_for_Automated_Crack_Detection_from_Pavement_Images)"".
 
 - The proposed crack detection algorithm includes following steps:
@@ -34,7 +34,17 @@ Install OpenCV 4 following instructions on [opencv installation guide](https://d
 | Argument Index |          Description           |
 | -------------- | :----------------------------: |
 | 1              | Folder containing crack images |
+To run the program in command prompt
+
+Open command prompt -> Got to the download `CrackDetection.exe`s location using `cd` command 
+
+ execute the downloaded `CrackDetection.exe`  with the following command:
+
+`CrackDetection path\to\image_directory`
+
 ## TO DO
+
+- Test image set 
 - Lane marking detection
 - Undesirable particles removal
 ## Author

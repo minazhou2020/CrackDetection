@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 	const string path(argv[1]);
 	auto images = read_folder(path);
 
-//#pragma omp parallel for num_threads(16)
+#pragma omp parallel for num_threads(16)
 	for (auto i = 0; i < images.size();i++) {
 		Mat src_gray;
 		cvtColor(images[i], src_gray, cv::COLOR_BGR2GRAY);
