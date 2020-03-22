@@ -1,5 +1,5 @@
 /*
- * @file   CrackSeedDetection.h
+ * @file   crack_seed_detection.h
  * @author Yuxiao Zhou
  */
 #ifndef CRACK_DETECTION_CRACK_SEED_DETECTION_H_
