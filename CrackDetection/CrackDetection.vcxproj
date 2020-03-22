@@ -163,17 +163,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CrackSeedDetection.h" />
-    <ClInclude Include="DisjointSets.h" />
+    <ClInclude Include="crack_seed_detection.h" />
+    <ClInclude Include="disjoint_sets.h" />
     <ClInclude Include="Graph.h" />
-    <ClInclude Include="PreProcessing.h" />
+    <ClInclude Include="pre_processing.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CrackSeedDetection.cpp" />
-    <ClCompile Include="DisjointSets.cpp" />
+    <ClCompile Include="crack_seed_detection.cpp" />
+    <ClCompile Include="disjoint_sets.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PreProcessing.cpp" />
+    <ClCompile Include="pre_processing.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
