@@ -7,17 +7,20 @@ This repository contains the code for crack detection in asphalt surfaces. It is
 ![crack detection methodology](https://github.com/minazhou2020/CrackDetection/blob/master/Description/Capture.PNG?raw=true)
 
 - Image Background Correction
-Pavement images are taken under different weather conditions and daytime, and may contain shadows and large variations of texture. As a result non-uniform lighting is present in the images. It is necessary to standardize image background in order to enhance the accuracy of crack detection.
+
+  Pavement images are taken under different weather conditions and daytime, and may contain shadows and large variations of texture. As a result non-uniform lighting is present in the images. It is necessary to standardize image background in order to enhance the accuracy of crack detection.
 
 ![image background correction](https://github.com/minazhou2020/CrackDetection/blob/master/Description/backgroundCorrection.PNG?raw=true)
 
 - Crack Seed Verification
-We employed the Grid Cell Analysis (GCA) method described in for seed detection, as this algorithm is capable of improving the detection speed by reducing the size of search space. A preprocessed image was divided into grid cells of 8×8 pixels, and the cells were classified as either a non-crack cell or a crack seed by analyzing brightness changes on neighboring cells. A group of patterns were  proposed adopted for crack seed verification. 
+
+  We employed the Grid Cell Analysis (GCA) method described in for seed detection, as this algorithm is capable of improving the detection speed by reducing the size of search space. A preprocessed image was divided into grid cells of 8×8 pixels, and the cells were classified as either a non-crack cell or a crack seed by analyzing brightness changes on neighboring cells. A group of patterns were  proposed adopted for crack seed verification. 
 
 ![crack seed verification patterns](https://github.com/minazhou2020/CrackDetection/blob/master/Description/Patterns.PNG?raw=true)
 
 - Seed Clustering
-In seed clustering, individual seeds were connected into seed clusters using a Minimum Spanning Tree (MST) based method. A MST is a minimum weight, cycle free subset of a graph's edges such that all nodes are connected. 
+
+  In seed clustering, individual seeds were connected into seed clusters using a Minimum Spanning Tree (MST) based method. A MST is a minimum weight, cycle free subset of a graph's edges such that all nodes are connected. 
 
 ![seed clustering](https://github.com/minazhou2020/CrackDetection/blob/master/Description/SeedDetection.PNG?raw=true)
 
@@ -38,7 +41,7 @@ Install OpenCV 4 following instructions on [opencv installation guide](https://d
 
 To run the program in command prompt
 
-Open command prompt -> Got to the download `CrackDetection.exe`( download [here](https://github.com/minazhou2020/CrackDetection/blob/master/CrackDetection/CrackDetection.exe))'s location using `cd` command 
+Open command prompt -> Got to the download `CrackDetection.exe`( download [here](https://github.com/minazhou2020/CrackDetection/blob/master/Exe/CrackDetection.exe))'s location using `cd` command 
 
  execute the downloaded `CrackDetection.exe`  with the following command:
 
@@ -46,7 +49,7 @@ Open command prompt -> Got to the download `CrackDetection.exe`( download [here]
 
 ## TO DO
 
-- Test image set 
+- Provide test image set 
 - Lane marking detection
 - Undesirable particles removal
 ## Author

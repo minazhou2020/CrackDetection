@@ -1,5 +1,8 @@
 /*
- * @file   CrackSeedDetection.cpp
+ * @file   crack_seed_detection.cpp
+ * @brief  classified ‘cell' as either a non-crack cell or a crack seed by
+ *         analyzing brightness changes on neighboring cells.
+ *         Four patterns were proposed adopted for crack seed verification.
  * @author Yuxiao Zhou
  */
 

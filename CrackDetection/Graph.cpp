@@ -1,13 +1,14 @@
 /*
  * @file   Graph.cpp
+ * @brief  construct graph and find the MST from the constructed graph using Kruskal's algorithm
  * @author Yuxiao Zhou
  */
 
 #include "graph.h"
 
-/*
- * constructor of graph
- */
+ /*
+  * constructor of graph
+  */
 namespace CrackDetection {
 	graph::graph(const int v, const int e)
 	{

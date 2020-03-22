@@ -1,5 +1,6 @@
 /*
- * @file   DisjointSets.h
+ * @file   disjoint_sets.cpp
+ * @brief  helper class for MST
  * @author Yuxiao Zhou
  */
 

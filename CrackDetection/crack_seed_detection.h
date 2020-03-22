@@ -2,17 +2,19 @@
  * @file   CrackSeedDetection.h
  * @author Yuxiao Zhou
  */
+#ifndef CRACK_DETECTION_CRACK_SEED_DETECTION_H_
+#define CRACK_DETECTION_CRACK_SEED_DETECTION_H_
 
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <opencv2/core/utility.hpp>
-#include "graph.h"
 #include "pre_processing.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <algorithm> 
 #include <iostream>
 #include "opencv2/flann/miniflann.hpp"
+#include "graph.h"
 
 using namespace cv;
 using namespace std;
@@ -29,17 +31,14 @@ namespace CrackDetection {
 		const int patter_size_ = 4;
 		const int neighbor_count_ = 4;
 		const int guide_count_ = 2;
-		const vector<pair<int, int>> neighbors_ = {{0,-2}, {0,-1}, {0,1}, {0,2},
-												  {-2,0}, {-1,0}, {1,0}, {2,0},
-											      {-2,-2}, {-1,-1}, {1,1}, {2,2},
-											      {-2,2}, {-1,1}, {1,-1}, {2,-2}};
-		const vector<pair<int, int>> guides_ = { {-1,0}, {1,0}, {0,1}, {0,-1},
-												 {-1,1}, {1,-1}, {-1,-1}, {1,1}};
+		const vector<pair<int, int>> neighbors_ = {
+			{0, -2}, {0, -1}, {0, 1}, {0, 2}, {-2, 0}, {-1, 0}, {1, 0}, {2, 0}, {-2, -2}, {-1, -1}, {1, 1}, {2, 2},
+			{-2, 2}, {-1, 1}, {1, -1}, {2, -2}
+		};
+		const vector<pair<int, int>> guides_ = { {-1,0}, {1,0}, {0,1}, {0,-1},{-1,1}, {1,-1}, {-1,-1}, {1,1}};
 		static float cell_contrast(int avg, int center, int guide);
-		bool is_seed(const vector<Mat>& cells, const int i, const int j, const int center_mean, const int height_count,
-			const float
-			threshold) const;
-
+		bool is_seed(const vector<Mat>& cells, int i, int j, int center_mean, int height_count, float threshold) const;
 	};
 }
 
+#endif

@@ -1,4 +1,11 @@
-#pragma once
+/*
+ * @file   graph.h
+ * @author Yuxiao Zhou
+ */
+
+#ifndef CRACK_DETECTION_GRAPH_H_
+#define CRACK_DETECTION_GRAPH_H_
+
 #include <utility> 
 #include <vector>
 #include <algorithm> 
@@ -6,14 +13,10 @@
 #include "disjoint_sets.h"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
-  
-/*
- * @file   Graph.h
- * @author Yuxiao Zhou
- */
 
 using namespace std;
 using namespace cv;
+
 namespace CrackDetection {
 	class graph
 	{
@@ -26,5 +29,7 @@ namespace CrackDetection {
 		int kruskal_MST(vector<Point2f> seeds, Mat image);
 		~graph();
 	};
-};
+}
+
+#endif
 
