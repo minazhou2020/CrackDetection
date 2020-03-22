@@ -1,30 +1,23 @@
 #include "CrackSeedDetection.h"
 
-const vector<pair<int, int>> neighbors = { {0,-2}, {0,-1}, {0,1}, {0,2},
-										   {-2,0}, {-1,0}, {1,0}, {2,0},
-										   {-2,-2}, {-1,-1}, {1,1}, {2,2},
-										   {-2,2}, {-1,1}, {1,-1}, {2,-2} };
-const vector<pair<int, int>> guides = { {-1,0}, {1,0}, {0,1}, {0,-1},
-											 {-1,1}, {1,-1}, {-1,-1}, {1,1} };
-
 int crack_seed_detection::is_seed(const vector<Mat>& cells, const int i, const int j, const int center_mean, 
-	const int height_count, const float threshold)
+	const int height_count, const float threshold) const
 {
 	float max_contrast = 0;
 	auto guide_count = 0;
-	for (auto m = 0; m < patter_size; m++) 
+	for (auto m = 0; m < patter_size_; m++) 
 	{
 		float mean_neighbor_total = 0;
-		for (auto n = 0; n < neighbor_count; n++)
+		for (auto n = 0; n < neighbor_count_; n++)
 		{
-			auto neighbor = cells[(i + neighbors[m*patter_size+n].first)*height_count + j + neighbors[m*patter_size + n].second];
+			auto neighbor = cells[(i + neighbors_[m*patter_size_+n].first)*height_count + j + neighbors_[m*patter_size_ + n].second];
 			auto mean = cv::mean(neighbor);
 			mean_neighbor_total += mean[0];
 		}
 
 		for (auto n = 0; n < guide_count; n++)
 		{
-			float g = mean(cells[(i + guides[guide_count++].first)*height_count + guides[guide_count++].second + 1])[0];
+			float g = mean(cells[(i + guides_[guide_count++].first)*height_count + guides_[guide_count++].second + 1])[0];
 			max_contrast = max(cell_contrast(mean_neighbor_total / 4, center_mean, g), max_contrast);
 		}
 
@@ -36,7 +29,7 @@ float crack_seed_detection::cell_contrast(const int avg, const int center, const
 	return static_cast<float>(2 * avg - center - guide) / static_cast<float>(avg);
 }
 
-vector<Point2f> crack_seed_detection::convert_to_seed(const int height_count, const int width_count, vector<Mat> cells, const float threshold)
+vector<Point2f> crack_seed_detection::convert_to_seed(const int height_count, const int width_count, vector<Mat> cells, const float threshold) const
 {
 	auto seeds = vector<Point2f>();
 	for (auto i = 2; i < height_count - 2; i++) {

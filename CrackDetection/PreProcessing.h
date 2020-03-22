@@ -9,10 +9,10 @@ using namespace std;
 
 class pre_processing
 {
-	static const float threshold_rate = 0.6;
-	static const int intensity = 150;
-
+	const float threshold_rate_ = 0.6;
+	const int intensity_ = 150;
+	const int pre_cell = 16;
 public:
-	static void preprocess(Mat &img);
+	void preprocess(Mat &img) const;
 	static vector<Mat> split_image(const Mat& img);
 };
