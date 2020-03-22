@@ -1,5 +1,5 @@
 /*
- * @file   CrackDetection.pre_processing.cpp
+ * @file   pre_processing.cpp
  * @brief  split image into a grid of small cells, image background standardization
  * @author Yuxiao Zhou
  */
