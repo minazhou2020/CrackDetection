@@ -34,9 +34,11 @@ Install OpenCV 4 following instructions on [opencv installation guide](https://d
 | Argument Index |          Description           |
 | -------------- | :----------------------------: |
 | 1              | Folder containing crack images |
+
+
 To run the program in command prompt
 
-Open command prompt -> Got to the download `CrackDetection.exe`s location using `cd` command 
+Open command prompt -> Got to the download `CrackDetection.exe`( download [here](https://github.com/minazhou2020/CrackDetection/blob/master/CrackDetection/CrackDetection.exe))'s location using `cd` command 
 
  execute the downloaded `CrackDetection.exe`  with the following command:
 
