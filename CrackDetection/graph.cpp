@@ -1,5 +1,5 @@
 /*
- * @file   Graph.cpp
+ * @file   graph.cpp
  * @brief  construct graph and find the MST from the constructed graph using Kruskal's algorithm
  * @author Yuxiao Zhou
  */
